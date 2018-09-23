@@ -12,6 +12,13 @@ server.use(bodyParser.urlencoded( { extended: true } ));
 
 server.set('view engine', 'ejs'); // Need this to enable EJB
 
+
+
+/*
+Default process (GET), 
+If the user git details are already in session state then route to search page
+otherwise route to the login page
+*/
 server.get('/', (req, res) => {
   if ( req.session.username  )  {
 	console.log('We have username (', req.session.username, '), assume password too in session object. Render search page.');
@@ -24,12 +31,19 @@ server.get('/', (req, res) => {
   
 });
 
-
+/*
+About process (GET)
+route to About page.
+*/
 server.get('/about', (req, res) => {
   console.log('/about', req.session);
   res.render('about');// will open the views/about.ejs
 });
 
+/*
+Logout process (POST). remove the user details from session state.
+Take the user back to the Login page.
+*/
 server.get('/logout', (req, res) => {
   req.session.username=null;
   req.session.password=null;
@@ -38,18 +52,34 @@ server.get('/logout', (req, res) => {
   res.render('login');// will open the views/about.ejs
 });
 
+/*
+Logout process (GET). remove the user details from session state.
+Take the user back to the Login page.
+*/
 server.post('/logout', (req, res) => {
+  req.session.username=null;
+  req.session.password=null;
   req.session.destory;
   console.log('/logout', req.session);
   res.render('login');// will open the views/about.ejs
 });
 
 
+/*
+Login process (GET). 
+Requires the username and password to be submitted. This must be done via POST method.
+Take the user back to the Login page.
+*/
 server.get('/login', (req, res) => {
   	res.render('login', { error: "Login details not correct, check and re-submit" } ); // will open the views/login.ejs
 });
 
 
+/*
+Login process (POST). 
+Get the username and password and save to session state. 
+Take the user to the Search page.
+*/
 server.post('/login', (req, res) => {
   console.log('/login body', req.body);
 
@@ -70,6 +100,11 @@ server.post('/login', (req, res) => {
 });
 
 
+/*
+Search process (GET). 
+The search parameters will not be available with the query string so route the user to the Search page if the user details are available.
+Otherwise route the user to the Login page.
+*/
 server.get('/search', (req, res) => {
   if (req.session.username && req.session.password) {
 	console.log("got username and password", req.session.username)
@@ -83,6 +118,12 @@ server.get('/search', (req, res) => {
 
 
 
+/*
+SearchUsers process (POST). 
+Get the search parameters and call the GitHubSearcher API. 
+Pass the response data to the Results page for rendering.
+If an error occurs route back to the Search page and pass the error message 
+*/
 server.post('/searchUsers', (req, res) => {
   console.log('searching...');  
   try {
@@ -112,7 +153,9 @@ server.post('/searchUsers', (req, res) => {
   
 });
 
-
+/*
+Initiate a Web Server instance
+*/
 server.listen(4242, () => {
   console.log('Express Server is running...');
 });
