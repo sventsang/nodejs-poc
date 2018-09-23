@@ -40,7 +40,7 @@ npm install github-search-api
 node ./index.js
 
 
-A ccess the URL http://localhost:4242/ You will be routed to a Login page for your your GitHub username and password. You will then be routed to the Search page. Enter one or more search parameters. Default values are available via the "Default" button.
+Access the URL http://localhost:4242/ You will be routed to a Login page for your your GitHub username and password. You will then be routed to the Search page. Enter one or more search parameters. Default values are available via the "Default" button.
 
 The Search options are:
 
