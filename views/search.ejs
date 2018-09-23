@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GitHub Search Demo</title>
 
 <script type='text/javascript'>
 
+function getObj(objName) {
+	var obj = document.getElementById(objName) 
+	//alert("obj="+ obj.name); 
+	//if (obj is null)
+	return obj;
+}
+
+function setObjValue(objName, value) {
+	var obj = getObj(objName);
+	obj.value = value;
+	//alert('obj='+ obj.name +'; obj.value='+ obj.value); 
+}
+
 function clearValues() {
-  term.value='';
-  repos.value='';
-  followers.value='';
+  setObjValue('term', '');
+  setObjValue('repos', '');
+  setObjValue('followers', '');
 }
 
 function setDefaultValues() {
-  term.value='fred';
-  repos.value='>5';
-  followers.value='>1000';
+  setObjValue('term', 'fred');
+  setObjValue('repos', '>5');
+  setObjValue('followers', '>1000');
 }
+
 
 </script>
 </head>

@@ -1,10 +1,10 @@
 nodejs-poc
 
-##Repository
+# Repository
 http://www.github.com/sventsang/nodejs-poc
 
 
-## Overview
+# Overview
 Using Node.js, this is a POC to provide a web based interface to search GitHub. Currently only the GitHub users details are searched on. 
 
 Acknowledgement: The project makes use of the github-search-api project (http://www.github.com/nevilgeorge/github-search-api) which provides the Github API calls. 
@@ -17,20 +17,20 @@ The web pages within the broswer also use JavaScript for selection and navigatio
 
 
 
-## Installation
+# Installation
 
 Node.js version is v8.12.0
 
 The following packages need to be installed in the root directory of the project.
 
-# express & express-session
+## express & express-session
 npm install express
 npm install express-session
 
-# ejs
+## ejs
 npm install ejs
 
-# github-search-api
+## github-search-api
 npm install github-search-api
 
 
@@ -40,7 +40,7 @@ npm install github-search-api
 
 
 
-##Usage
+# Usage
 
 ## start the web server
 node ./index.js

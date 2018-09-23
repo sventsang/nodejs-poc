@@ -15,7 +15,7 @@ server.set('view engine', 'ejs'); // Need this to enable EJB
 server.get('/', (req, res) => {
   if ( req.session.username  )  {
 	console.log('We have username (', req.session.username, '), assume password too in session object. Render search page.');
-    res.render('search', { username: req.session.username, result: [] } ); 
+    res.render('search', { username: req.session.username, result: [], errorObj: ''  } ); 
 
   } else {  
 	console.log('We DO NOT have a username. Render login page.');
