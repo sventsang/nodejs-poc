@@ -22,6 +22,7 @@ The following packages need to be installed in the root directory of the project
 
 ## express & express-session
 npm install express
+
 npm install express-session
 
 ## ejs
