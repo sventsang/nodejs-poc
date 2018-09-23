@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GitHub Search Demo</title>
+</head>
+<body>
+
+<label style='font-size:14pt;'>Demo GitHub Search facility: </label>
+<label style='font-size:12pt;'>User: </label>
+<label style='font-size:12pt; color:blue;'><%= username %></label> (<a href='/logout'>Logout</a>)
+<hr/>
+
+
+<% if (result.length === 0) { %>
+<h3>No Results were returned</h3>
+<% 
+  } else {
+%>
+<h2>Results</h2>  
+<a href='/search'>Search Again</a>
+<br/><br/>
+<table border=1>
+	<tr>
+	<th>Item</th>
+	<th>Login</th>
+	<th>Type</th>
+	<th>Score</th>
+	<th>GitHub Link</th>
+<tr>
+<%   for (var i =0; i < result.length; i++) { %>
+<tr>
+	<td><%= i + 1 %></td>
+	<td><%= result[i].login %></td>
+	<td><%= result[i].type %></td>
+	<td><%= result[i].score %></td>
+	<td><a href='<%= result[i].html_url %>' target='_github'><%= result[i].html_url %></a></td>
+</tr>
+<%   } %>
+</table>
+<% } %>
+
+<br/>
+<a href='/search'>Search Again</a>
+
+  </body>
+</html>

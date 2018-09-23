@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GitHub Search Demo</title>
+
+<script type='text/javascript'>
+
+function clearValues() {
+  term.value='';
+  repos.value='';
+  followers.value='';
+}
+
+function setDefaultValues() {
+  term.value='fred';
+  repos.value='>5';
+  followers.value='>1000';
+}
+
+</script>
+</head>
+<body>
+
+<label style='font-size:14pt;'>Demo GitHub Search facility: </label>
+<label style='font-size:12pt;'>User: </label>
+<label style='font-size:12pt; color:blue;'><%= username %></label> (<a href='/logout'>Logout</a>)
+<hr/>
+
+
+<% if (errorObj != null && errorObj != '') { %>
+	<h3 style='color:red'><%= errorObj %></h3>
+<% } %>
+
+
+<h2>Please Enter Search Criteria</h2>
+<label style='font-size:12pt; color:red;'>At least one search must be entered, results are limited to 30.</label>
+  
+<form action="/searchUsers" method="POST">
+
+<table>
+<tr><td>Search String:</td><td><input type='text' id='term' name='term' value=''/><i> string to search for.</i></td></tr>
+<tr><td>Respositories:</td><td><input type='text' id='repos' name='repos' value=''/><i> number of repositories to include in search, must have a <, = or > before number</i></td></tr>
+<tr><td>Followers:</td><td><input type='text' id='followers' name='followers' value=''/><i> number of followers to include in search, must have a <, = or > before number</i></td></tr>
+
+<tr><td></td><td>
+<input type='submit' value='Search'/>
+<input type='button' value='Clear' onclick='clearValues();' />
+<input type='button' value='Default' onclick='setDefaultValues();'/>
+</td></tr>
+
+</table>
+</form>
+  
+ 
+  
+  
+  
+  </body>
+</html>
